@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            inicioToolStripMenuItem = new ToolStripMenuItem();
+            MenuPrincipal = new MenuStrip();
+            InicioStripMenuItem = new ToolStripMenuItem();
             iniciarSesionToolStripMenuItem = new ToolStripMenuItem();
             cerrarToolStripMenuItem = new ToolStripMenuItem();
             archivoToolStripMenuItem = new ToolStripMenuItem();
@@ -46,38 +46,38 @@
             factoresDeEmisionToolStripMenuItem = new ToolStripMenuItem();
             añadirUsuariosToolStripMenuItem = new ToolStripMenuItem();
             ayudaToolStripMenuItem = new ToolStripMenuItem();
-            splitContainer1 = new SplitContainer();
-            menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.SuspendLayout();
+            ContenedorPrimario = new SplitContainer();
+            MenuPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ContenedorPrimario).BeginInit();
+            ContenedorPrimario.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // MenuPrincipal
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { inicioToolStripMenuItem, archivoToolStripMenuItem, herramientosToolStripMenuItem, configuracionToolStripMenuItem, ayudaToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            MenuPrincipal.Items.AddRange(new ToolStripItem[] { InicioStripMenuItem, archivoToolStripMenuItem, herramientosToolStripMenuItem, configuracionToolStripMenuItem, ayudaToolStripMenuItem });
+            MenuPrincipal.Location = new Point(0, 0);
+            MenuPrincipal.Name = "MenuPrincipal";
+            MenuPrincipal.Size = new Size(800, 24);
+            MenuPrincipal.TabIndex = 0;
+            MenuPrincipal.Text = "menuStrip1";
             // 
-            // inicioToolStripMenuItem
+            // InicioStripMenuItem
             // 
-            inicioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iniciarSesionToolStripMenuItem, cerrarToolStripMenuItem });
-            inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            inicioToolStripMenuItem.Size = new Size(48, 20);
-            inicioToolStripMenuItem.Text = "Inicio";
+            InicioStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iniciarSesionToolStripMenuItem, cerrarToolStripMenuItem });
+            InicioStripMenuItem.Name = "InicioStripMenuItem";
+            InicioStripMenuItem.Size = new Size(48, 20);
+            InicioStripMenuItem.Text = "Inicio";
             // 
             // iniciarSesionToolStripMenuItem
             // 
             iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
-            iniciarSesionToolStripMenuItem.Size = new Size(180, 22);
+            iniciarSesionToolStripMenuItem.Size = new Size(143, 22);
             iniciarSesionToolStripMenuItem.Text = "Iniciar Sesion";
             // 
             // cerrarToolStripMenuItem
             // 
             cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            cerrarToolStripMenuItem.Size = new Size(180, 22);
+            cerrarToolStripMenuItem.Size = new Size(143, 22);
             cerrarToolStripMenuItem.Text = "Cerrar";
             // 
             // archivoToolStripMenuItem
@@ -140,25 +140,26 @@
             // vehiculoToolStripMenuItem
             // 
             vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
-            vehiculoToolStripMenuItem.Size = new Size(179, 22);
+            vehiculoToolStripMenuItem.Size = new Size(180, 22);
             vehiculoToolStripMenuItem.Text = "Vehiculo";
+            vehiculoToolStripMenuItem.Click += vehiculoToolStripMenuItem_Click;
             // 
             // imagenToolStripMenuItem
             // 
             imagenToolStripMenuItem.Name = "imagenToolStripMenuItem";
-            imagenToolStripMenuItem.Size = new Size(179, 22);
+            imagenToolStripMenuItem.Size = new Size(180, 22);
             imagenToolStripMenuItem.Text = "Imagen";
             // 
             // factoresDeEmisionToolStripMenuItem
             // 
             factoresDeEmisionToolStripMenuItem.Name = "factoresDeEmisionToolStripMenuItem";
-            factoresDeEmisionToolStripMenuItem.Size = new Size(179, 22);
+            factoresDeEmisionToolStripMenuItem.Size = new Size(180, 22);
             factoresDeEmisionToolStripMenuItem.Text = "Factores de emision";
             // 
             // añadirUsuariosToolStripMenuItem
             // 
             añadirUsuariosToolStripMenuItem.Name = "añadirUsuariosToolStripMenuItem";
-            añadirUsuariosToolStripMenuItem.Size = new Size(179, 22);
+            añadirUsuariosToolStripMenuItem.Size = new Size(180, 22);
             añadirUsuariosToolStripMenuItem.Text = "Añadir Usuarios";
             // 
             // ayudaToolStripMenuItem
@@ -167,37 +168,37 @@
             ayudaToolStripMenuItem.Size = new Size(53, 20);
             ayudaToolStripMenuItem.Text = "Ayuda";
             // 
-            // splitContainer1
+            // ContenedorPrimario
             // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 24);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Size = new Size(800, 426);
-            splitContainer1.SplitterDistance = 266;
-            splitContainer1.TabIndex = 1;
+            ContenedorPrimario.Dock = DockStyle.Fill;
+            ContenedorPrimario.Location = new Point(0, 24);
+            ContenedorPrimario.Name = "ContenedorPrimario";
+            ContenedorPrimario.Size = new Size(800, 426);
+            ContenedorPrimario.SplitterDistance = 266;
+            ContenedorPrimario.TabIndex = 1;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(splitContainer1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(ContenedorPrimario);
+            Controls.Add(MenuPrincipal);
+            MainMenuStrip = MenuPrincipal;
             Name = "FrmPrincipal";
             Text = "Gestion de Rutas";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
+            MenuPrincipal.ResumeLayout(false);
+            MenuPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ContenedorPrimario).EndInit();
+            ContenedorPrimario.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem inicioToolStripMenuItem;
+        private MenuStrip MenuPrincipal;
+        private ToolStripMenuItem InicioStripMenuItem;
         private ToolStripMenuItem iniciarSesionToolStripMenuItem;
         private ToolStripMenuItem cerrarToolStripMenuItem;
         private ToolStripMenuItem archivoToolStripMenuItem;
@@ -214,6 +215,6 @@
         private ToolStripMenuItem verContenedoresToolStripMenuItem;
         private ToolStripMenuItem verHistorialToolStripMenuItem;
         private ToolStripMenuItem ayudaToolStripMenuItem;
-        private SplitContainer splitContainer1;
+        private SplitContainer ContenedorPrimario;
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RutaCampus.Repositories
 {
-    internal class Repository<T, TId> : IRepository<T, TId>, IDentity<int>, IUnidOfWork where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>,new()
+    internal class Repository<T, TId> : IRepository<T, TId>, IDentity<int>, IUnidOfWork where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
     {
         private DataStore<T> _dataStore;
         private DoubleLinkList<T> _list;
@@ -14,12 +14,23 @@ namespace RutaCampus.Repositories
         {
             _dataStore = new DataStore<T>(path);
             _list = new DoubleLinkList<T>();
+            foreach (T item in _dataStore.GetAll())
+            {
+                Add(item);
+            }
         }
 
         public int Id { get; set;}
 
         public void Add(T obj)
         {
+            ArgumentNullException.ThrowIfNull(obj);
+            if (Exist(obj.Id))
+            {
+                Update(obj);
+                return;
+            }
+
             _list.Add(obj);
         }
 
@@ -58,7 +69,8 @@ namespace RutaCampus.Repositories
 
         public void Update(T obj)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(obj);
+            _list[GetPositionById(obj.Id)] = obj;
         }
 
         private int GetPositionById(TId id)

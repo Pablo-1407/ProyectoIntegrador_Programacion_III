@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RutaCampus.Repositories
 {
-    internal class DataStore<T> where T : class, IFactory<T>, ISerialize<T>, new()
+    internal class DataStore<T> where T : class, IFactory<T>, ISerialize<T>
     {
         private string _path;
         public DataStore(string path)
@@ -17,6 +17,9 @@ namespace RutaCampus.Repositories
         public IEnumerable<T> GetAll()
         {
             DoubleLinkList<T> list = new DoubleLinkList<T>();
+            if (!File.Exists(_path))
+                return list;
+
             using (StreamReader sr = new StreamReader(_path))
             {
                 while (!sr.EndOfStream)

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RutaCampus.Common
 {
-    internal class Lista<T> : IListOperation<T>
+    public class Lista<T> : IListOperation<T>
     {
         private T[] _items;
         private int _count;

@@ -2,6 +2,7 @@
 using RutaCampus.Contratos;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace RutaCampus.Domain
@@ -32,11 +33,11 @@ namespace RutaCampus.Domain
 
         public static Vehiculo Deserialize(string textCsv)
         {
+            ValidarCsv(textCsv);
             string[] parts = textCsv.Split(',');
-            if (parts.Length != 8)
-            {
-                throw new ArgumentException("El texto CSV no tiene el formato correcto.");
-            }
+            
+          
+
             return new Vehiculo
             {
                 Id = parts[0],
@@ -53,6 +54,27 @@ namespace RutaCampus.Domain
         public static string Serialize(Vehiculo obj)
         {
             return $"{obj.Id},{obj.CapacidadMaximaLitros},{obj.NivelActualLitros},{obj.CostoPorKilometro},{obj.CostoPorHora},{obj.tiempopromedio},{obj.tiempodescarga},{obj.velocidadpromedio}";
+        }
+        private static void ValidarCsv(string textCsv)
+        {
+            if (string.IsNullOrWhiteSpace(textCsv))
+                throw new ArgumentException("El texto CSV no puede estar vacío.");
+
+            string[] parts = textCsv.Split(',');
+            if (parts.Length != 8)
+                throw new ArgumentException("El texto CSV no tiene las 8 columnas requeridas.");
+
+            if (string.IsNullOrWhiteSpace(parts[0]))
+                throw new ArgumentException("El campo Id no puede estar vacío.");
+
+            // Validar que del índice 1 al 7 sean dobles válidos
+            for (int i = 1; i <= 7; i++)
+            {
+                if (!double.TryParse(parts[i], NumberStyles.Any, CultureInfo.InvariantCulture, out _))
+                {
+                    throw new ArgumentException($"El campo en la posición {i} no es un número decimal válido.");
+                }
+            }
         }
     }
 }
