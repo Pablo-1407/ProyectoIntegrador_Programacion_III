@@ -35,26 +35,66 @@ namespace RutaCampus.Views
         {
             Lista<CampoMetadata> esqueleto = Esqueletos.ObtenerEsqueletoVehiculo();
             _mapaControles = FormBuilder.GenerarFormulario(this, esqueleto);
+            if (!repository.IsEmpty())
+            {
+               TSBAgregar.Enabled = false;
+               TSBEliminar.Enabled = true;
+               TSBGuardar.Enabled = true;
+               TSBActualizar.Enabled = true;
+                Vehiculo vehiculo = repository.GetAll().First();
+                _mapaControles["Id"].Text = vehiculo.Id;
+                _mapaControles["CapacidadMaximaLitros"].Text = vehiculo.CapacidadMaximaLitros.ToString();
+                _mapaControles["NivelActualLitros"].Text = vehiculo.NivelActualLitros.ToString();
+                _mapaControles["CostoPorKilometro"].Text = vehiculo.CostoPorKilometro.ToString();
+                _mapaControles["CostoPorHora"].Text = vehiculo.CostoPorHora.ToString();
+                _mapaControles["tiempopromedio"].Text = vehiculo.tiempopromedio.ToString();
+                _mapaControles["tiempodescarga"].Text = vehiculo.tiempodescarga.ToString();
+                _mapaControles["velocidadpromedio"].Text = vehiculo.velocidadpromedio.ToString();
+                
+            }   
         }
 
         private void TSBAgregar_Click(object sender, EventArgs e)
         {
-            string line = FormBuilder.GenerarCsvDesdeFormulario(Esqueletos.ObtenerEsqueletoVehiculo(), _mapaControles);
-            Vehiculo Recolector = Vehiculo.Create(line);
-            repository.Add(Recolector);
+            try
+            {
+                string line = FormBuilder.GenerarCsvDesdeFormulario(Esqueletos.ObtenerEsqueletoVehiculo(), _mapaControles);
+                Vehiculo Recolector = Vehiculo.Create(line);
+                repository.Add(Recolector);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al agregar el vehículo {ex.Message}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TSBActualizar_Click(object sender, EventArgs e)
         {
-            string line = FormBuilder.GenerarCsvDesdeFormulario(Esqueletos.ObtenerEsqueletoVehiculo(), _mapaControles);
-            Vehiculo Recolector = Vehiculo.Create(line);
-            repository.Update(Recolector);
+            try 
+            {
+                string line = FormBuilder.GenerarCsvDesdeFormulario(Esqueletos.ObtenerEsqueletoVehiculo(), _mapaControles);
+                Vehiculo Recolector = Vehiculo.Create(line);
+                repository.Update(Recolector);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar el vehículo {ex.Message}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void TSBEliminar_Click(object sender, EventArgs e)
         {
-            string placa = _mapaControles["Id"].Text;
-            repository.Delete(placa);
+            try
+            {
+                string placa = _mapaControles["Id"].Text;
+                repository.Delete(placa);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar el vehículo {ex.Message}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void TSBLimpiar_Click(object sender, EventArgs e)

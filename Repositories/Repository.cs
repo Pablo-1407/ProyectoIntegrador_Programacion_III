@@ -86,5 +86,10 @@ namespace RutaCampus.Repositories
             }
             throw new ArgumentException("El elemento no se encuentra en la lista.", nameof(id));
         }
+
+        public bool IsEmpty()
+        {
+            return _list.Count == 0;
+        }
     }
 }
