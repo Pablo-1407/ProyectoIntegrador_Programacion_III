@@ -115,19 +115,20 @@
             // verAcopioToolStripMenuItem
             // 
             verAcopioToolStripMenuItem.Name = "verAcopioToolStripMenuItem";
-            verAcopioToolStripMenuItem.Size = new Size(165, 22);
+            verAcopioToolStripMenuItem.Size = new Size(180, 22);
             verAcopioToolStripMenuItem.Text = "Ver acopio";
             // 
             // verContenedoresToolStripMenuItem
             // 
             verContenedoresToolStripMenuItem.Name = "verContenedoresToolStripMenuItem";
-            verContenedoresToolStripMenuItem.Size = new Size(165, 22);
+            verContenedoresToolStripMenuItem.Size = new Size(180, 22);
             verContenedoresToolStripMenuItem.Text = "Ver contenedores";
+            verContenedoresToolStripMenuItem.Click += verContenedoresToolStripMenuItem_Click;
             // 
             // verHistorialToolStripMenuItem
             // 
             verHistorialToolStripMenuItem.Name = "verHistorialToolStripMenuItem";
-            verHistorialToolStripMenuItem.Size = new Size(165, 22);
+            verHistorialToolStripMenuItem.Size = new Size(180, 22);
             verHistorialToolStripMenuItem.Text = "Ver historial";
             // 
             // configuracionToolStripMenuItem
@@ -140,26 +141,27 @@
             // vehiculoToolStripMenuItem
             // 
             vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
-            vehiculoToolStripMenuItem.Size = new Size(180, 22);
+            vehiculoToolStripMenuItem.Size = new Size(179, 22);
             vehiculoToolStripMenuItem.Text = "Vehiculo";
             vehiculoToolStripMenuItem.Click += vehiculoToolStripMenuItem_Click;
             // 
             // imagenToolStripMenuItem
             // 
             imagenToolStripMenuItem.Name = "imagenToolStripMenuItem";
-            imagenToolStripMenuItem.Size = new Size(180, 22);
+            imagenToolStripMenuItem.Size = new Size(179, 22);
             imagenToolStripMenuItem.Text = "Imagen";
+            imagenToolStripMenuItem.Click += imagenToolStripMenuItem_Click;
             // 
             // factoresDeEmisionToolStripMenuItem
             // 
             factoresDeEmisionToolStripMenuItem.Name = "factoresDeEmisionToolStripMenuItem";
-            factoresDeEmisionToolStripMenuItem.Size = new Size(180, 22);
+            factoresDeEmisionToolStripMenuItem.Size = new Size(179, 22);
             factoresDeEmisionToolStripMenuItem.Text = "Factores de emision";
             // 
             // añadirUsuariosToolStripMenuItem
             // 
             añadirUsuariosToolStripMenuItem.Name = "añadirUsuariosToolStripMenuItem";
-            añadirUsuariosToolStripMenuItem.Size = new Size(180, 22);
+            añadirUsuariosToolStripMenuItem.Size = new Size(179, 22);
             añadirUsuariosToolStripMenuItem.Text = "Añadir Usuarios";
             // 
             // ayudaToolStripMenuItem
@@ -201,10 +203,6 @@
         private ToolStripMenuItem InicioStripMenuItem;
         private ToolStripMenuItem iniciarSesionToolStripMenuItem;
         private ToolStripMenuItem cerrarToolStripMenuItem;
-        private ToolStripMenuItem archivoToolStripMenuItem;
-        private ToolStripMenuItem abrirArchivoToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem borrarTodoToolStripMenuItem;
         private ToolStripMenuItem configuracionToolStripMenuItem;
         private ToolStripMenuItem vehiculoToolStripMenuItem;
         private ToolStripMenuItem imagenToolStripMenuItem;
@@ -216,5 +214,9 @@
         private ToolStripMenuItem verHistorialToolStripMenuItem;
         private ToolStripMenuItem ayudaToolStripMenuItem;
         private SplitContainer ContenedorPrimario;
+        private ToolStripMenuItem archivoToolStripMenuItem;
+        private ToolStripMenuItem abrirArchivoToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem borrarTodoToolStripMenuItem;
     }
 }
