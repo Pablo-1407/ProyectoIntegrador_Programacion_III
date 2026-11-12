@@ -1,6 +1,7 @@
 ﻿using RutaCampus.Contratos;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace RutaCampus.Domain
@@ -72,15 +73,18 @@ namespace RutaCampus.Domain
                 throw new ArgumentException("El texto CSV no tiene el formato correcto.");
             }
 
-            int id = int.Parse(parts[0]);
+            int id = int.Parse(parts[0], CultureInfo.InvariantCulture);
             string nombre = parts[1];
-            double x = double.Parse(parts[2]);
-            double y = double.Parse(parts[3]);
+            double x = double.Parse(parts[2], CultureInfo.InvariantCulture);
+            double y = double.Parse(parts[3], CultureInfo.InvariantCulture);
             TipoResiduo tipoResiduo = Enum.Parse<TipoResiduo>(parts[4]);
-            double capacidadLitros = double.Parse(parts[5]);
-            double nivelActualLitros = double.Parse(parts[6]);
-            DateTime fechaUltimaRecoleccion = DateTime.Parse(parts[7]);
-            double litrosGeneradosPorDia = double.Parse(parts[8]);
+            double capacidadLitros = double.Parse(parts[5], CultureInfo.InvariantCulture);
+            double nivelActualLitros = double.Parse(parts[6], CultureInfo.InvariantCulture);
+
+            // Usamos InvariantCulture para garantizar la lectura correcta de la fecha estandarizada
+            DateTime fechaUltimaRecoleccion = DateTime.Parse(parts[7], CultureInfo.InvariantCulture);
+
+            double litrosGeneradosPorDia = double.Parse(parts[8], CultureInfo.InvariantCulture);
 
             return new Contenedores
             {
@@ -97,12 +101,20 @@ namespace RutaCampus.Domain
 
         public static string Serialize(Contenedores obj)
         {
-            return $"{obj.Id},{obj.Nombre},{obj.Coordenadas.x},{obj.Coordenadas.y},{obj.TipoResiduo},{obj.CapacidadLitros},{obj.NivelActualLitros},{obj.FechaUltimaRecoleccion},{obj.LitrosGeneradosPorDia}";
-        }
+            string fechaFormateada = obj.FechaUltimaRecoleccion.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-        public override string ToString()
-        {
-            return $"Id: {Id}, Nombre: {Nombre}, Coordenadas: ({Coordenadas.x}, {Coordenadas.y}), TipoResiduo: {TipoResiduo}, CapacidadLitros: {CapacidadLitros}, NivelActualLitros: {NivelActualLitros}, FechaUltimaRecoleccion: {FechaUltimaRecoleccion}, LitrosGeneradosPorDia: {LitrosGeneradosPorDia}, PorcentajeLlenado: {PorcentajeLlenado}%";
+            return string.Join(",", new object[]
+            {
+        obj.Id,
+        obj.Nombre,
+        obj.Coordenadas.x.ToString(CultureInfo.InvariantCulture),
+        obj.Coordenadas.y.ToString(CultureInfo.InvariantCulture),
+        obj.TipoResiduo,
+        obj.CapacidadLitros.ToString(CultureInfo.InvariantCulture),
+        obj.NivelActualLitros.ToString(CultureInfo.InvariantCulture),
+        fechaFormateada,
+        obj.LitrosGeneradosPorDia.ToString(CultureInfo.InvariantCulture)
+            });
         }
     }
 }

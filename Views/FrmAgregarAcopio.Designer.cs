@@ -30,13 +30,14 @@
         {
             SuspendLayout();
             // 
-            // AgregarConexion
+            // FrmAgregarAcopio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(800, 450);
-            Name = "AgregarConexion";
-            Text = "Agregar Conexion";
+            Name = "FrmAgregarAcopio";
+            Text = "Agregar Acopio";
             ResumeLayout(false);
         }
 

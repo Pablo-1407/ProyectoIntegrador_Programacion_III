@@ -115,20 +115,20 @@
             // verAcopioToolStripMenuItem
             // 
             verAcopioToolStripMenuItem.Name = "verAcopioToolStripMenuItem";
-            verAcopioToolStripMenuItem.Size = new Size(180, 22);
+            verAcopioToolStripMenuItem.Size = new Size(165, 22);
             verAcopioToolStripMenuItem.Text = "Ver acopio";
             // 
             // verContenedoresToolStripMenuItem
             // 
             verContenedoresToolStripMenuItem.Name = "verContenedoresToolStripMenuItem";
-            verContenedoresToolStripMenuItem.Size = new Size(180, 22);
+            verContenedoresToolStripMenuItem.Size = new Size(165, 22);
             verContenedoresToolStripMenuItem.Text = "Ver contenedores";
             verContenedoresToolStripMenuItem.Click += verContenedoresToolStripMenuItem_Click;
             // 
             // verHistorialToolStripMenuItem
             // 
             verHistorialToolStripMenuItem.Name = "verHistorialToolStripMenuItem";
-            verHistorialToolStripMenuItem.Size = new Size(180, 22);
+            verHistorialToolStripMenuItem.Size = new Size(165, 22);
             verHistorialToolStripMenuItem.Text = "Ver historial";
             // 
             // configuracionToolStripMenuItem
@@ -175,6 +175,10 @@
             ContenedorPrimario.Dock = DockStyle.Fill;
             ContenedorPrimario.Location = new Point(0, 24);
             ContenedorPrimario.Name = "ContenedorPrimario";
+            // 
+            // ContenedorPrimario.Panel2
+            // 
+            ContenedorPrimario.Panel2.Click += ContenedorPrimario_Panel2_Click;
             ContenedorPrimario.Size = new Size(800, 426);
             ContenedorPrimario.SplitterDistance = 266;
             ContenedorPrimario.TabIndex = 1;
@@ -189,6 +193,7 @@
             MainMenuStrip = MenuPrincipal;
             Name = "FrmPrincipal";
             Text = "Gestion de Rutas";
+            Load += FrmPrincipal_Load;
             MenuPrincipal.ResumeLayout(false);
             MenuPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ContenedorPrimario).EndInit();

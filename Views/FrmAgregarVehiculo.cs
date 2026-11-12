@@ -89,6 +89,7 @@ namespace RutaCampus.Views
             {
                 string placa = _mapaControles["Id"].Text;
                 repository.Delete(placa);
+                UIHelper.LimpiarControles(this);
             }
             catch (Exception ex)
             {

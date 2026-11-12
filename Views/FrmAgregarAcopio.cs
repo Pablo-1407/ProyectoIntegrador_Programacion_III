@@ -10,9 +10,19 @@ namespace RutaCampus.Views
 {
     public partial class FrmAgregarAcopio : Form
     {
-        public FrmAgregarAcopio()
+        private static FrmAgregarAcopio? _instance;
+        private FrmAgregarAcopio()
         {
             InitializeComponent();
+        }
+
+        public static FrmAgregarAcopio GetInstance()
+        {
+            if (_instance == null || _instance.IsDisposed)
+            {
+                _instance = new FrmAgregarAcopio();
+            }
+            return _instance;
         }
     }
 }

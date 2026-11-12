@@ -9,7 +9,10 @@ namespace RutaCampus.Domain
     {
         public long Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public Roles Rol { get; set; }
+        public string Contraseña { get; set; } = string.Empty;
+
+ 
 
         public static Usuario Create()
         {
@@ -28,13 +31,14 @@ namespace RutaCampus.Domain
             {
                 Id = long.Parse(parts[0]),
                 Nombre = parts[1],
-                Password = parts[2]
+                Rol = (Roles)Enum.Parse(typeof(Roles), parts[2]),
+                Contraseña = parts[3]
             };
         }
 
         public static string Serialize(Usuario obj)
         {
-            return $"{obj.Id},{obj.Nombre},{obj.Password}";
+            return $"{obj.Id},{obj.Nombre},{obj.Rol},{obj.Contraseña}";
         }
     }
 }
