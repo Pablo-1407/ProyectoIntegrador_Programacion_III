@@ -2,25 +2,23 @@
 using RutaCampus.Contratos;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RutaCampus.Repositories
 {
-    internal class Repository<T, TId> : IRepository<T, TId>, IDentity<int>, IUnidOfWork where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
+    internal class Repository<T, TId> : IRepository<T, TId> where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
     {
-        private DataStore<T> _dataStore;
-        private DoubleLinkList<T> _list;
+        private readonly DataStore<T> _dataStore;
+        private readonly DoubleLinkList<T> _list;
+
         public Repository(string path)
         {
             _dataStore = new DataStore<T>(path);
             _list = new DoubleLinkList<T>();
-            foreach (T item in _dataStore.GetAll())
+            foreach (T item in _dataStore.LoadAll())
             {
                 Add(item);
             }
         }
-
-        public int Id { get; set;}
 
         public void Add(T obj)
         {
@@ -41,30 +39,28 @@ namespace RutaCampus.Repositories
 
         public void Delete(TId id)
         {
-            _list.Delete(GetPositionById(id));
+            _list.RemoveAt(GetPositionById(id));
         }
 
         public bool Exist(TId id)
         {
-            try
+            foreach (T item in _list)
             {
-                GetPositionById(id);
-                return true;
+                if (EqualityComparer<TId>.Default.Equals(item.Id, id))
+                    return true;
             }
-            catch (ArgumentException)
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public IEnumerable<T> GetAll()
         {
-            return _list;
+            return new List<T>(_list);
         }
 
         public T GetById(TId id)
         {
-            return _list.ElementAt(GetPositionById(id))!;
+            return _list[GetPositionById(id)];
         }
 
         public void Update(T obj)
@@ -89,7 +85,7 @@ namespace RutaCampus.Repositories
 
         public bool IsEmpty()
         {
-            return _list.Count == 0;
+            return _list.IsEmpty;
         }
     }
 }

@@ -1,25 +1,20 @@
-using RutaCampus.Domain;
 using RutaCampus.Repositories;
 using RutaCampus.Views;
-using System.Globalization;
 
 namespace RutaCampus
 {
     public partial class FrmPrincipal : Form
     {
-        private Repository<Contenedores, int> _repositorioContenedores;
-        private string _rutaimagen;
+        private readonly ContenedoresRepository _repositorioContenedores;
+        private readonly AcopioRepository _repositorioAcopios;
 
         public FrmPrincipal()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
 
-            string carpeta = Path.Combine(Application.StartupPath, "Datos");
-            string archivo = Path.Combine(carpeta, "Contenedores.csv");
-
-            _repositorioContenedores = new Repository<Contenedores, int>(archivo);
-            
+            _repositorioContenedores = ContenedoresRepository.Instance;
+            _repositorioAcopios = AcopioRepository.Instance;
         }
 
         private void comprobarimagenpanel2()
@@ -70,6 +65,7 @@ namespace RutaCampus
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    ContenedorPrimario.Panel2.Controls.Clear();
                     string rutaArchivoSeleccionado = openFileDialog.FileName;
                     ContenedorPrimario.Panel2.BackgroundImage = Image.FromFile(rutaArchivoSeleccionado);
                     ContenedorPrimario.Panel2.BackgroundImageLayout = ImageLayout.Stretch;
@@ -97,14 +93,26 @@ namespace RutaCampus
             }
             else
             {
-                FrmAgregarAcopio formulario = FrmAgregarAcopio.GetInstance();
-                formulario.Show();
-            }
-        }
+                if (_repositorioAcopios.IsEmpty())
+                {
+                    if (MessageBox.Show("Desea agregar un acopio aqui?", "Agregar elemento", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Point clickLocation = ContenedorPrimario.Panel2.PointToClient(Cursor.Position);
+                        FrmAgregarAcopio formulario = FrmAgregarAcopio.GetInstance(clickLocation, _repositorioAcopios);
+                        formulario.Show();
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Desea agregar un contenedor aqui?", "Agregar elemento", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Point clickLocation = ContenedorPrimario.Panel2.PointToClient(Cursor.Position);
+                        FrmAgregarContenedor formulario = FrmAgregarContenedor.GetInstance(clickLocation, _repositorioContenedores);
+                        formulario.Show();
+                    }
+                }
 
-        private void agregarContenedor(object sender, EventArgs e)
-        {
-            
+            }
         }
     }
 }

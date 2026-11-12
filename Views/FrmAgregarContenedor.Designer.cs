@@ -1,4 +1,4 @@
-﻿namespace FormContenedor
+﻿namespace RutaCampus.Views
 {
     partial class FrmAgregarContenedor
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarContenedor));
             lblTitulo = new Label();
             panel1 = new Panel();
             textBox1 = new TextBox();
@@ -36,12 +35,6 @@
             panel2 = new Panel();
             txtNombre = new TextBox();
             lblNombre = new Label();
-            toolStrip1 = new ToolStrip();
-            TSBAgregar = new ToolStripButton();
-            TSBActualizar = new ToolStripButton();
-            TSBEliminar = new ToolStripButton();
-            TSBLimpiar = new ToolStripButton();
-            TSBGuardar = new ToolStripButton();
             panel4 = new Panel();
             cmbTipoResiduo = new ComboBox();
             lblTipoResiduo = new Label();
@@ -65,7 +58,6 @@
             panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            toolStrip1.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
@@ -139,61 +131,6 @@
             lblNombre.Size = new Size(51, 15);
             lblNombre.TabIndex = 0;
             lblNombre.Text = "Nombre";
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { TSBAgregar, TSBActualizar, TSBEliminar, TSBLimpiar, TSBGuardar });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(773, 27);
-            toolStrip1.TabIndex = 3;
-            toolStrip1.Text = "toolStrip1";
-            // 
-            // TSBAgregar
-            // 
-            TSBAgregar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TSBAgregar.Image = (Image)resources.GetObject("TSBAgregar.Image");
-            TSBAgregar.ImageTransparentColor = Color.Magenta;
-            TSBAgregar.Name = "TSBAgregar";
-            TSBAgregar.Size = new Size(24, 24);
-            TSBAgregar.Text = "toolStripButton1";
-            // 
-            // TSBActualizar
-            // 
-            TSBActualizar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TSBActualizar.Image = (Image)resources.GetObject("TSBActualizar.Image");
-            TSBActualizar.ImageTransparentColor = Color.Magenta;
-            TSBActualizar.Name = "TSBActualizar";
-            TSBActualizar.Size = new Size(24, 24);
-            TSBActualizar.Text = "toolStripButton2";
-            // 
-            // TSBEliminar
-            // 
-            TSBEliminar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TSBEliminar.Image = (Image)resources.GetObject("TSBEliminar.Image");
-            TSBEliminar.ImageTransparentColor = Color.Magenta;
-            TSBEliminar.Name = "TSBEliminar";
-            TSBEliminar.Size = new Size(24, 24);
-            TSBEliminar.Text = "toolStripButton3";
-            // 
-            // TSBLimpiar
-            // 
-            TSBLimpiar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TSBLimpiar.Image = (Image)resources.GetObject("TSBLimpiar.Image");
-            TSBLimpiar.ImageTransparentColor = Color.Magenta;
-            TSBLimpiar.Name = "TSBLimpiar";
-            TSBLimpiar.Size = new Size(24, 24);
-            TSBLimpiar.Text = "toolStripButton4";
-            // 
-            // TSBGuardar
-            // 
-            TSBGuardar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TSBGuardar.Image = (Image)resources.GetObject("TSBGuardar.Image");
-            TSBGuardar.ImageTransparentColor = Color.Magenta;
-            TSBGuardar.Name = "TSBGuardar";
-            TSBGuardar.Size = new Size(24, 24);
-            TSBGuardar.Text = "toolStripButton5";
             // 
             // panel4
             // 
@@ -402,7 +339,6 @@
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
-            Controls.Add(toolStrip1);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -414,8 +350,6 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
@@ -440,12 +374,6 @@
         private Panel panel2;
         private TextBox txtNombre;
         private Label lblNombre;
-        private ToolStrip toolStrip1;
-        private ToolStripButton TSBAgregar;
-        private ToolStripButton TSBActualizar;
-        private ToolStripButton TSBEliminar;
-        private ToolStripButton TSBLimpiar;
-        private ToolStripButton TSBGuardar;
         private Panel panel4;
         private Label lblTipoResiduo;
         private ComboBox cmbTipoResiduo;

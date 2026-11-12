@@ -37,10 +37,6 @@ namespace RutaCampus.Views
             _mapaControles = FormBuilder.GenerarFormulario(this, esqueleto);
             if (!repository.IsEmpty())
             {
-               TSBAgregar.Enabled = false;
-               TSBEliminar.Enabled = true;
-               TSBGuardar.Enabled = true;
-               TSBActualizar.Enabled = true;
                 Vehiculo vehiculo = repository.GetAll().First();
                 _mapaControles["Id"].Text = vehiculo.Id;
                 _mapaControles["CapacidadMaximaLitros"].Text = vehiculo.CapacidadMaximaLitros.ToString();

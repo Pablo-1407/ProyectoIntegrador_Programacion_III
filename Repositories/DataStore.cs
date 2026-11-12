@@ -2,19 +2,20 @@
 using RutaCampus.Contratos;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RutaCampus.Repositories
 {
-    internal class DataStore<T> where T : class, IFactory<T>, ISerialize<T>
+    internal class DataStore<T> : IDataStore<T> where T : class, IFactory<T>, ISerialize<T>
     {
-        private string _path;
+        private readonly string _path;
+
         public DataStore(string path)
         {
-            _path = path;
+            ArgumentException.ThrowIfNullOrWhiteSpace(path);
+            _path = Path.GetFullPath(path);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> LoadAll()
         {
             DoubleLinkList<T> list = new DoubleLinkList<T>();
             if (!File.Exists(_path))
@@ -26,7 +27,7 @@ namespace RutaCampus.Repositories
                 {
                     string line = sr.ReadLine() ?? string.Empty;
 
-                    if (string.IsNullOrEmpty(line))
+                    if (string.IsNullOrWhiteSpace(line))
                         continue;
 
                     list.Add(T.Create(line));
@@ -35,16 +36,21 @@ namespace RutaCampus.Repositories
             return list;
         }
 
-        public void SaveAll(IEnumerable<T> list)
+        public void SaveAll(IEnumerable<T> items)
         {
-            StringBuilder sb = new StringBuilder();
+            ArgumentNullException.ThrowIfNull(items);
 
-            foreach (T item in list)
-                sb.AppendLine(T.Serialize(item));
+            string? directory = Path.GetDirectoryName(_path);
+            if (!string.IsNullOrEmpty(directory))
+                Directory.CreateDirectory(directory);
 
-            using (StreamWriter sw = new StreamWriter(_path))
+            using (StreamWriter writer = new StreamWriter(_path, false))
             {
-                sw.Write(sb.ToString());
+                foreach (T item in items)
+                {
+                    ArgumentNullException.ThrowIfNull(item);
+                    writer.WriteLine(T.Serialize(item));
+                }
             }
         }
     }

@@ -7,6 +7,6 @@ namespace RutaCampus.Contratos
     internal interface IDataStore<T>
     {
         IEnumerable<T> LoadAll();
-        void SaveAll(IEnumerable<T> DoubleLinkList);
+        void SaveAll(IEnumerable<T> items);
     }
 }

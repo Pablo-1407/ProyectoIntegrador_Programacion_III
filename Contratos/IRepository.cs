@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RutaCampus.Contratos
 {
-    internal interface IRepository<T, TId> where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
+    internal interface IRepository<T, TId> : IUnidOfWork where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
     {
         void Add(T obj);
         void Update(T obj);
@@ -12,5 +12,6 @@ namespace RutaCampus.Contratos
         bool Exist(TId id);
         T GetById(TId id);
         IEnumerable<T> GetAll();
+        bool IsEmpty();
     }
 }
