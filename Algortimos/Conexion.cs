@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace RutaCampus.Algortimos
 {
-    internal sealed class Conexion : IDentity<int>, IFactory<Conexion>, ISerialize<Conexion>
+    internal sealed class Conexion : IIdentity<int>, IFactory<Conexion>, ISerialize<Conexion>
     {
         private NodoGrafo? _nodoOrigen;
         private NodoGrafo? _nodoDestino;

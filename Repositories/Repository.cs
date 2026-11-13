@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RutaCampus.Repositories
 {
-    internal class Repository<T, TId> : IRepository<T, TId> where T : class, IFactory<T>, IDentity<TId>, ISerialize<T>
+    internal class Repository<T, TId> : IRepository<T, TId> where T : class, IFactory<T>, IIdentity<TId>, ISerialize<T>
     {
         private readonly DataStore<T> _dataStore;
         private readonly DoubleLinkList<T> _list;

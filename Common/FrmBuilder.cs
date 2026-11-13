@@ -7,10 +7,10 @@ namespace RutaCampus.Common
 {
         public static class FormBuilder
         {
-            public static Dictionary<string, Control> GenerarFormulario(Control contenedorPadre, Lista<CampoMetadata> esqueleto)
+            public static Dictionary<string, Control> GenerarFormulario(Control contenedorPadre, Lista<CampoMetadata> esqueleto, int posicionInicialY = 20)
             {
                 var controlesGenerados = new Dictionary<string, Control>();
-                int posicionY = 20;
+                int posicionY = posicionInicialY;
                 int espaciadoY = 40;
 
                 foreach (var campo in esqueleto)
@@ -20,7 +20,8 @@ namespace RutaCampus.Common
                     {
                         Text = campo.Etiqueta,
                         Location = new Point(20, posicionY + 4),
-                        AutoSize = true
+                        AutoSize = true,
+                        BorderStyle = BorderStyle.Fixed3D
                     });
 
                     Control ctrl = campo.Tipo switch

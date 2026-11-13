@@ -75,8 +75,8 @@ namespace RutaCampus.Domain
 
             int id = int.Parse(parts[0], CultureInfo.InvariantCulture);
             string nombre = parts[1];
-            double x = double.Parse(parts[2], CultureInfo.InvariantCulture);
-            double y = double.Parse(parts[3], CultureInfo.InvariantCulture);
+            int x = int.Parse(parts[2], CultureInfo.InvariantCulture);
+            int y = int.Parse(parts[3], CultureInfo.InvariantCulture);
             TipoResiduo tipoResiduo = Enum.Parse<TipoResiduo>(parts[4]);
             double capacidadLitros = double.Parse(parts[5], CultureInfo.InvariantCulture);
             double nivelActualLitros = double.Parse(parts[6], CultureInfo.InvariantCulture);
@@ -90,7 +90,7 @@ namespace RutaCampus.Domain
             {
                 Id = id,
                 Nombre = nombre,
-                Coordenadas = (x, y),
+                Coordenadas = new Point(x, y),
                 TipoResiduo = tipoResiduo,
                 CapacidadLitros = capacidadLitros,
                 NivelActualLitros = nivelActualLitros,
@@ -107,8 +107,8 @@ namespace RutaCampus.Domain
             {
         obj.Id,
         obj.Nombre,
-        obj.Coordenadas.x.ToString(CultureInfo.InvariantCulture),
-        obj.Coordenadas.y.ToString(CultureInfo.InvariantCulture),
+        obj.Coordenadas.X.ToString(),
+        obj.Coordenadas.Y.ToString(),
         obj.TipoResiduo,
         obj.CapacidadLitros.ToString(CultureInfo.InvariantCulture),
         obj.NivelActualLitros.ToString(CultureInfo.InvariantCulture),

@@ -12,7 +12,7 @@ namespace RutaCampus.Repositories
 
         private ContenedoresRepository()
         {
-            string path = Path.Combine(AppContext.BaseDirectory, "Datos", "Contenedores.txt");
+            string path = Path.Combine(AppContext.BaseDirectory, "data", "contenedores.csv");
             _repository = new Repository<Contenedores, int>(path);
         }
 

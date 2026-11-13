@@ -12,7 +12,7 @@ namespace RutaCampus.Repositories
 
         private AcopioRepository()
         {
-            string path = Path.Combine(AppContext.BaseDirectory, "Datos", "Acopio.txt");
+            string path = Path.Combine(AppContext.BaseDirectory, "data", "acopio.csv");
             _repository = new Repository<Acopio, int>(path);
         }
 

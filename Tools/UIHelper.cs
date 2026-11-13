@@ -30,5 +30,26 @@ namespace RutaCampus.Tools
                 }
             }
         }
+
+        public static void AjustarTamanoAlContenido(this Form formulario, int margen = 20)
+        {
+            ArgumentNullException.ThrowIfNull(formulario);
+            if (margen < 0)
+                throw new ArgumentOutOfRangeException(nameof(margen));
+
+            formulario.PerformLayout();
+
+            int ancho = 0;
+            int alto = 0;
+            foreach (Control control in formulario.Controls)
+            {
+                control.PerformLayout();
+                ancho = Math.Max(ancho, control.Right);
+                alto = Math.Max(alto, control.Bottom);
+            }
+
+            formulario.AutoSize = false;
+            formulario.ClientSize = new Size(ancho + margen, alto + margen);
+        }
     }
 }

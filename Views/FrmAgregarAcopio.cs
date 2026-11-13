@@ -1,6 +1,7 @@
 ﻿using RutaCampus.Common;
 using RutaCampus.Domain;
 using RutaCampus.Repositories;
+using RutaCampus.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,7 @@ namespace RutaCampus.Views
 {
     public partial class FrmAgregarAcopio : Form
     {
-        private double _coordenadaX;
-        private double _coordenadaY;
+        private Point Coordenadas { get; set; }
         private Dictionary<string, Control> _mapaControles;
         private AcopioRepository _repositorioAcopios = null!;
         private static FrmAgregarAcopio? _instance;
@@ -33,9 +33,8 @@ namespace RutaCampus.Views
             {
                 _instance = new FrmAgregarAcopio();
             }
-
-            _instance._coordenadaX = coordenadas.X;
-            _instance._coordenadaY = coordenadas.Y;
+            
+            _instance.Coordenadas = coordenadas;
             _instance._repositorioAcopios = repositorioAcopios;
             return _instance;
         }
@@ -45,6 +44,7 @@ namespace RutaCampus.Views
             Lista<CampoMetadata> esqueleto = Esqueletos.ObtenerEsqueletoAcopio();
             _mapaControles = FormBuilder.GenerarFormulario(this, esqueleto);
             CrearBotonAgregar();
+            this.AjustarTamanoAlContenido();
         }
 
         private void CrearBotonAgregar()
@@ -70,7 +70,7 @@ namespace RutaCampus.Views
             try
             {
                 string line = FormBuilder.GenerarCsvDesdeFormulario(Esqueletos.ObtenerEsqueletoAcopio(), _mapaControles);
-                line += $",{_coordenadaX.ToString(CultureInfo.InvariantCulture)},{_coordenadaY.ToString(CultureInfo.InvariantCulture)}";
+                line += $",{Coordenadas.X.ToString(CultureInfo.InvariantCulture)},{Coordenadas.Y.ToString(CultureInfo.InvariantCulture)}";
                 Acopio acopio = Acopio.Create(line);
                 _repositorioAcopios.Add(acopio);
                 _repositorioAcopios.commit();

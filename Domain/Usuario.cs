@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RutaCampus.Domain
 {
-    internal class Usuario : IDentity<long>, IFactory<Usuario>, ISerialize<Usuario>
+    internal class Usuario : IIdentity<long>, IFactory<Usuario>, ISerialize<Usuario>
     {
         public long Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

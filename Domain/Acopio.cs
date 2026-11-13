@@ -11,7 +11,7 @@ namespace RutaCampus.Domain
         {
             Id = 0;
             Nombre = string.Empty;
-            Coordenadas = (0, 0);
+            Coordenadas = new Point(0, 0);
         }
         public static Acopio Create()
         {
@@ -23,6 +23,8 @@ namespace RutaCampus.Domain
             return Deserialize(textCsv);
         }
 
+        //point para coordenadas
+        //int
         public static Acopio Deserialize(string textCsv)
         {
             string[] parts = textCsv.Split(',');
@@ -33,20 +35,20 @@ namespace RutaCampus.Domain
 
             int id = int.Parse(parts[0]);
             string nombre = parts[1];
-            double x = double.Parse(parts[2]);
-            double y = double.Parse(parts[3]);
+            int x = int.Parse(parts[2]);
+            int y = int.Parse(parts[3]);
 
             return new Acopio
             {
                 Id = id,
                 Nombre = nombre,
-                Coordenadas = (x, y)
+                Coordenadas = new Point((int)x, (int)y)
             };
         }
 
         public static string Serialize(Acopio obj)
         {
-            return $"{obj.Id},{obj.Nombre},{obj.Coordenadas.x},{obj.Coordenadas.y}";
+            return $"{obj.Id},{obj.Nombre},{obj.Coordenadas.X},{obj.Coordenadas.Y}";
         }
     }
 }

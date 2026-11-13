@@ -28,8 +28,6 @@ namespace RutaCampus.Common
             {
                 new CampoMetadata { NombrePropiedad = "Id", Etiqueta = "ID del Contenedor", Tipo = TipoControl.Numero },
                 new CampoMetadata { NombrePropiedad = "Nombre", Etiqueta = "Nombre / Ubicación", Tipo = TipoControl.Texto },
-                new CampoMetadata { NombrePropiedad = "CoordenadaX", Etiqueta = "Coordenada X", Tipo = TipoControl.Decimal },
-                new CampoMetadata { NombrePropiedad = "CoordenadaY", Etiqueta = "Coordenada Y", Tipo = TipoControl.Decimal },
                 new CampoMetadata {
                     NombrePropiedad = "TipoResiduo",
                     Etiqueta = "Tipo de Residuo",

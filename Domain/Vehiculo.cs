@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RutaCampus.Domain
 {
-    internal sealed class Vehiculo : Singleton<Vehiculo>, IDentity<string>, IFactory<Vehiculo>, ISerialize<Vehiculo>
+    internal sealed class Vehiculo : Singleton<Vehiculo>, IIdentity<string>, IFactory<Vehiculo>, ISerialize<Vehiculo>
     {
         public string Id { get; set; } = string.Empty; // Placa del vehículo
         public double CapacidadMaximaLitros { get; set; } = 0.0;

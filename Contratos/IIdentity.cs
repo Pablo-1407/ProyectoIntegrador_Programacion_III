@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RutaCampus.Contratos
 {
-    internal interface IDentity<TId>
+    internal interface IIdentity<TId>
     {
         TId Id { get;set; }
     }

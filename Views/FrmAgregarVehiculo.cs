@@ -48,6 +48,7 @@ namespace RutaCampus.Views
                 _mapaControles["velocidadpromedio"].Text = vehiculo.velocidadpromedio.ToString();
                 
             }   
+            this.AjustarTamanoAlContenido();
         }
 
         private void TSBAgregar_Click(object sender, EventArgs e)
